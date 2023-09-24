@@ -2,7 +2,7 @@
 const request = require('request');
 function countCompletedTasks (url) {
   request(url, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+    if (!error && response.statusCode === 200) {
       const todos = JSON.parse(body);
       const completedTasks = todos.filter(todo => todo.completed);
       const userIds = completedTasks.map(todo => todo.userId);
