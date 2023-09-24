@@ -1,6 +1,6 @@
 #!/usr/bin/node
 const request = require('request');
-function countCompletedTasks(url) {
+function countCompletedTasks (url) {
   request(url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       const todos = JSON.parse(body);
