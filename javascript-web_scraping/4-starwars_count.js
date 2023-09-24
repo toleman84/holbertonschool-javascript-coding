@@ -5,8 +5,13 @@ request(url, function (error, response, body) {
   if (error) {
     console.error(error);
   } else {
+    let films = 0;
     const movies = JSON.parse(body).results;
-    const count = movies.filter((movie) => movie.characters.includes('https://swapi-api.hbtn.io/api/people/18/')).length;
-    console.log(count);
+    for (const movie of movies) {
+      for (const character of movie.characters) {
+        if (character.includes('/people/18')) films++;
+      }
+    }
+    console.log(films);
   }
 });
