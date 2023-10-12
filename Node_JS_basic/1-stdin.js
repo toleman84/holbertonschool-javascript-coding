@@ -8,13 +8,13 @@ const rl = readline.createInterface({
 console.log('Welcome to Holberton School, what is your name?');
 
 rl.question(' ', (name) => {
-  console.log(`Your name is: ${name}`)
+  console.log(`Your name is: ${name}`);
 
   rl.close();
 });
 
 process.on('SIGINT', () => {
-  console.log('This important software is now closing')
+  console.log('This important software is now closing');
 
   process.exit(0);
 });
