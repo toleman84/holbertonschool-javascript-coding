@@ -1,27 +1,42 @@
-/* eslint-disable no-undef */
 const fs = require('fs');
-function countStudents(path) {
+
+function countStudents(filePath) {
   try {
-    const data = fs.readFileSync(path, 'utf8');
+    const data = fs.readFileSync(filePath, 'utf8');
+
+    // Split the data into lines.
     const lines = data.split('\n');
-    // Remove empty lines
-    const students = lines.filter((line) => line.length > 0);
-    // Count the number of students in each field
-    const fields = {};
-    students.forEach((student) => {
-      const field = student.split(',')[3];
-      if (!fields[field]) {
-        fields[field] = 0;
-      }
-      fields[field]++;
-    });
-    // Log the number of students in each field
-    console.log(`Number of students: ${students.length}`);
-    for (const field in fields) {
-      console.log(`Number of students in ${field}: ${fields[field]}. List: ${students.filter((student) => student.split(',')[3] === field).map((student) => student.split(',')[0]).join(', ')}`);
+
+    // Create a list of students.
+    const students = [];
+    for (const line of lines) {
+      // Split the line into comma-separated values.
+      const values = line.split(',');
+
+      // Add the student to the list.
+      students.push({
+        firstName: values[0],
+        major: values[1],
+      });
     }
-  } catch (err) {
-    throw new Error('Cannot load the database');
+
+    // Count the number of students in each major.
+    const studentCountsByMajor = students.reduce((acc, student) => {
+      acc[student.major] = (acc[student.major] || 0) + 1;
+      return acc;
+    }, {});
+
+    // Log the number of students to the console.
+    console.log('Number of students:', students.length);
+
+    // Log the number of students in each field, and the list.
+    for (const [major, count] of Object.entries(studentCountsByMajor)) {
+      const studentList = students.filter((student) => student.major === major).map((student) => student.firstName).join(', ');
+      console.log(`Number of students in ${major}: ${count}. List: ${studentList}`);
+    }
+  } catch (error) {
+    throw new Error(`Cannot load the database: ${error.message}`);
   }
 }
+
 module.exports = countStudents;
