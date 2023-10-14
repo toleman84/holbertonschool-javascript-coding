@@ -40,11 +40,6 @@ const app = http.createServer((req, res) => {
         // Split the line into comma-separated values.
         const values = line.split(',');
 
-        // If the line is empty or the first value is empty, skip it.
-        if (line === '' || values[0] === '') {
-          continue;
-        }
-
         // Add the student to the list.
         students.push({
           name: values[0],
@@ -64,8 +59,8 @@ This is the list of our students
 
 Number of students: ${students.length}
 
-Number of students in CS: ${studentCountsByMajor.CS}. List: ${students.filter((student) => student.major === 'CS').map((student) => student.name).join(', ')}
-Number of students in SWE: ${studentCountsByMajor.SWE}. List: ${students.filter((student) => student.major === 'SWE').map((student) => student.name).join(', ')}
+Number of students in CS: ${studentCountsByMajor['CS']}. List: ${students.filter(student => student.major === 'CS').map(student => student.name).join(', ')}
+Number of students in SWE: ${studentCountsByMajor['SWE']}. List: ${students.filter(student => student.major === 'SWE').map(student => student.name).join(', ')}
 `;
 
       // Write the response body and end the response.
