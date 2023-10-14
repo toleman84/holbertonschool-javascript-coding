@@ -43,7 +43,7 @@ const app = http.createServer((req, res) => {
         // Add the student to the list.
         students.push({
           name: values[0],
-          major: values[1],
+          major: values[3],
         });
       }
 
