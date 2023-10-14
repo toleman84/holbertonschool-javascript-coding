@@ -16,7 +16,7 @@ function countStudents(filePath) {
       // Add the student to the list.
       students.push({
         firstName: values[0],
-        major: values[1],
+        major: values[3],
       });
     }
 
