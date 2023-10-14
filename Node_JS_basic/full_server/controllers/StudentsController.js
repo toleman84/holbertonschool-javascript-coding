@@ -19,7 +19,7 @@ Number of students in SWE: ${database.swe.length}. List: ${database.swe.join(', 
   }
 
   static async getAllStudentsByMajor(request, response) {
-    const major = request.params.major;
+    const { major } = request.params;
     if (major !== 'CS' && major !== 'SWE') {
       response.status(500).send('Major parameter must be CS or SWE');
       return;
