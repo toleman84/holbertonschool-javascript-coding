@@ -14,13 +14,17 @@ async function countStudents(filePath) {
     const students = [];
     for (const line of lines) {
       // Split the line into comma-separated values.
-      const values = line.split(',');
 
-      // Add the student to the list.
-      students.push({
-        firstName: values[0],
-        major: values[3],
-      });
+      const values = line.split(',');
+      if (values[0] === 'firstname') {
+        continue;
+      } else {
+        // Add the student to the list.
+        students.push({
+          firstName: values[0],
+          major: values[3],
+        });
+      }
     }
 
     // Count the number of students in each major.
