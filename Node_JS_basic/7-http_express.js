@@ -32,11 +32,13 @@ app.get('/students', async (req, res) => {
     // Split the line into comma-separated values.
     const values = line.split(',');
 
-    // Add the student to the list.
-    students.push({
-      name: values[0],
-      major: values[3],
-    });
+    if (values[0] !== 'firstname') {
+      // Add the student to the list.
+        students.push({
+          firstName: values[0],
+          major: values[3],
+        });
+      }
   }
 
   // Count the number of students in each major.
@@ -48,8 +50,8 @@ app.get('/students', async (req, res) => {
   // Generate the response body.
   const responseBody = `This is the list of our students
 Number of students: ${students.length}
-Number of students in CS: ${studentCountsByMajor.CS}. List: ${students.filter((student) => student.major === 'CS').map((student) => student.name).join(', ')}
-Number of students in SWE: ${studentCountsByMajor.SWE}. List: ${students.filter((student) => student.major === 'SWE').map((student) => student.name).join(', ')}`;
+Number of students in CS: ${studentCountsByMajor.CS}. List: ${students.filter((student) => student.major === 'CS').map((student) => student.firstName).join(', ')}
+Number of students in SWE: ${studentCountsByMajor.SWE}. List: ${students.filter((student) => student.major === 'SWE').map((student) => student.firstName).join(', ')}`;
 
   // Write the response body and end the response.
   res.send(responseBody);
