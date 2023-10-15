@@ -16,9 +16,7 @@ async function countStudents(filePath) {
       // Split the line into comma-separated values.
 
       const values = line.split(',');
-      if (values[0] === 'firstname') {
-        continue;
-      } else {
+      if (values[0] !== 'firstname') {
         // Add the student to the list.
         students.push({
           firstName: values[0],
