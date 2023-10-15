@@ -34,11 +34,11 @@ app.get('/students', async (req, res) => {
 
     if (values[0] !== 'firstname') {
       // Add the student to the list.
-        students.push({
-          firstName: values[0],
-          major: values[3],
-        });
-      }
+      students.push({
+        firstName: values[0],
+        major: values[3],
+      });
+    }
   }
 
   // Count the number of students in each major.
