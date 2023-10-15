@@ -5,12 +5,9 @@ class StudentsController {
     try {
       const database = await readDatabase('./database.csv');
 
-      const responseBody = `
-This is the list of our students
-
+      const responseBody = `This is the list of our students
 Number of students in CS: ${database.cs.length}. List: ${database.cs.join(', ')}
-Number of students in SWE: ${database.swe.length}. List: ${database.swe.join(', ')}
-`;
+Number of students in SWE: ${database.swe.length}. List: ${database.swe.join(', ')}`;
 
       response.status(200).send(responseBody);
     } catch (error) {

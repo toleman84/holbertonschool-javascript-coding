@@ -11,7 +11,7 @@ async function readDatabase(filePath) {
       const values = line.split(',');
       return {
         firstName: values[0],
-        major: values[1],
+        major: values[3],
       };
     });
 
