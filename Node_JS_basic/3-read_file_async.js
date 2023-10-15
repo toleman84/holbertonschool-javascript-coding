@@ -34,8 +34,10 @@ async function countStudents(filePath) {
 
     // Log the number of students in each field, and the list.
     for (const [major, count] of Object.entries(studentCountsByMajor)) {
-      const studentList = students.filter((student) => student.major === major).map((student) => student.firstName).join(', ');
-      console.log(`Number of students in ${major}: ${count}. List: ${studentList}`);
+      if (count > 1) {
+        const studentList = students.filter((student) => student.major === major).map((student) => student.firstName).join(', ');
+        console.log(`Number of students in ${major}: ${count}. List: ${studentList}`);
+      }
     }
 
     return students.length;
