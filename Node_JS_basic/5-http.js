@@ -54,14 +54,10 @@ const app = http.createServer((req, res) => {
       }, {});
 
       // Generate the response body.
-      const responseBody = `
-This is the list of our students
-
+      const responseBody = `This is the list of our students
 Number of students: ${students.length}
-
 Number of students in CS: ${studentCountsByMajor.CS}. List: ${students.filter((student) => student.major === 'CS').map((student) => student.name).join(', ')}
-Number of students in SWE: ${studentCountsByMajor.SWE}. List: ${students.filter((student) => student.major === 'SWE').map((student) => student.name).join(', ')}
-`;
+Number of students in SWE: ${studentCountsByMajor.SWE}. List: ${students.filter((student) => student.major === 'SWE').map((student) => student.name).join(', ')}`;
 
       // Write the response body and end the response.
       res.write(responseBody);
